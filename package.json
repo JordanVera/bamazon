@@ -1,0 +1,20 @@
+{
+  "name": "bamazon",
+  "version": "1.0.0",
+  "description": "app is an amazon like app all within the command line",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jordan Vera",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "chalk-pipe": "^1.2.0",
+    "console.tablefy": "^1.0.2",
+    "fs": "0.0.1-security",
+    "hipster-product-creator": "^1.0.4",
+    "inquirer": "^6.0.0",
+    "mysql": "^2.16.0"
+  }
+}
