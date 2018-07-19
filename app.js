@@ -1,11 +1,11 @@
 require('console.tablefy')
 
-const fs 						= require('fs'),
-	  inquirer 					= require('inquirer'),
-	  chalk 						= require('chalk'),
-	  mysql 						= require('mysql'),
-	  hipsterProductCreator 	= require('hipster-product-creator'),
-	  chalkPipe 					= require('chalk-pipe');
+const fs = require('fs'),
+	  inquirer = require('inquirer'),
+	  chalk = require('chalk'),
+	  mysql = require('mysql'),
+	  hipsterProductCreator = require('hipster-product-creator'),
+	  chalkPipe 	= require('chalk-pipe');
 	  
 // hipsterProductCreator(10)
 
