@@ -26,14 +26,17 @@ connection.connect(function(err) {
 	})
 })
 
+// CRUD F(X)
 
 const start = function () {
 	connection.query('SELECT * FROM inventory', function(err, result, fields) {
 		inquirer.prompt(questions)
 		.then(answers => {
-			console.log(JSON.stringify(answers,null,'  '));
+			
+//			console.log(JSON.stringify(answers,null,'  '));
+
 			for (let i = 0; i < result.length; i++) {
-				if (result[i].item_id == answers.item_id) {
+				if (result[i].item_id == answers.item_id  && result[i].volume >= answers.quantity) {
 					
 					connection.query('UPDATE inventory SET ? WHERE ?', [{
 						volume: result[i].volume - answers.quantity
@@ -45,28 +48,16 @@ const start = function () {
 							throw err;
 						}
 					})
+					
+					console.log(`${chalk.greenBright.bold('Thank you, your purchase was succesful')}`)
+				} else if (result[i].item_id == answers.item_id  && answers.quantity > result[i].volume) {
+					console.log(`${chalk.redBright.bold('We do not have enough volume at the moment to fulfill your order, sorry for the inconvenience.')}`)
 				}
 			}
 		});
 	})
 }
 
-
-/* 
-function validateInventory() {
-	let validateIDs = []
-  	for (var i = 0; i < result.length; i++) {
-		validateIDs.push([result[i].item_id, result[i].volume])
-  		if (answers.item_id == result[i].item_id) {
-			console.log('Congrats, you made a purchase')
-		}
-	}
-	
-	console.log(validateIDs)
-}
-
-validateInventory()
- */
  
 const questions = [
 	  {
@@ -91,47 +82,3 @@ const questions = [
 		}
 	},
 ];
-
-
-
-
-
-
-// CRUD f(x)
-//function createProduct() {
-//	let query = connection.query(
-//	'INSERT INTO inventory SET ?',
-//	{
-//		product_name: 'versace belt',
-//		department_name: 'designer',
-//		price: 425,
-//		volume: 2
-//	},
-//	function(err, res) {
-//	      updateProduct();
-//	    }
-//	)
-//}
-//
-//function updateProduct() {
-//  var query = connection.query(
-//    "UPDATE inventory SET ? WHERE ?",
-//    [
-//      {
-//        product_name: 'versace belt'
-//      },
-//      {
-//        department_name: 'designer'
-//      },
-//	  {
-//	    price: 425
-//	  },
-//	  {
-//	    volume: 2
-//	  }
-//    ],
-//    function(err, res) {
-//      deleteProduct();
-//    }
-//  );
-//}
