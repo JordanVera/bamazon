@@ -48,10 +48,11 @@ const start = function () {
 							throw err;
 						}
 					})
-					
-					console.log(`${chalk.greenBright.bold('Thank you, your purchase was succesful')}`)
+					let totalCost = result[i].price * answers.quantity
+					console.log(`${chalk.greenBright('Thank you, your purchase was succesful')}`)
+					console.log(`${chalk.greenBright(`total cost: ${totalCost}`)}`)
 				} else if (result[i].item_id == answers.item_id  && answers.quantity > result[i].volume) {
-					console.log(`${chalk.redBright.bold('We do not have enough volume at the moment to fulfill your order, sorry for the inconvenience.')}`)
+					console.log(`${chalk.redBright('We do not have enough volume at the moment to fulfill your order, sorry for the inconvenience.')}`)
 				}
 			}
 		});
